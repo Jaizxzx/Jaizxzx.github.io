@@ -16,13 +16,11 @@
 
   <!-- slider stylesheet -->
   <!-- slider stylesheet -->
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
 
   <!-- bootstrap core css -->
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
 
   <!-- fonts style -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Poppins:400,700&display=swap" rel="stylesheet">
   <!-- Custom styles for this template -->
   <link href="css/style.css" rel="stylesheet" />
   <!-- responsive style -->
@@ -32,6 +30,30 @@
     html {
       scroll-behavior: smooth;
     }
+    .scroll-down-arrow {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: blink 1.5s infinite;
+            opacity: 0.7;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .scroll-down-arrow:hover {
+            opacity: 1;
+        }
+
+        .scroll-down-arrow svg {
+            width: 60px;  /* Increased size */
+            height: 60px; /* Increased size */
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 0.3; }
+        }
   </style>
 </head>
 
@@ -75,18 +97,6 @@
                 </li>
               </ul>
               <div class="user_option">
-                <!-- User Button Implement Later if needed -->
-                 <!--
-                <a href="">
-                  <img src="images/user.png" alt="">
-                </a>
-              -->
-                <!-- Search Button Implement Later if needed -->
-                 <!--
-                <form class="form-inline my-2 my-lg-0 ml-0 ml-lg-4 mb-3 mb-lg-0">
-                  <button class="btn  my-2 my-sm-0 nav_search-btn" type="submit"></button>
-                </form>
-              -->
               </div>
             </div>
           </div>
@@ -95,7 +105,7 @@
     </header>
     <!-- end header section -->
     <!-- slider section -->
-    <section class=" slider_section position-relative">
+    <section class="slider_section position-relative">
       <div class="container">
           <div class="carousel-inner">
             <div class="carousel-item active">
@@ -120,11 +130,29 @@
               </div>
             </div>
           </div>
-        </div>
+      </div>
+      <!-- Updated scroll-down arrow -->
+      <div class="scroll-down-arrow" onclick="scrollToNextSection()">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 5v14"></path>
+              <path d="M19 12l-7 7-7-7"></path>
+          </svg>
       </div>
     </section>
     <!-- end slider section -->
   </div>
+
+  <!-- do section -->
+  <!-- (The do section remains unchanged) -->
+
+  <script>
+    function scrollToNextSection() {
+      const nextSection = document.querySelector('.do_section');
+      if (nextSection) {
+        nextSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  </script>
 
   <!-- do section -->
   <style>
@@ -415,188 +443,6 @@
 
   <!-- end work section -->
 
-  <!-- Change to recommendation section later when needed -->
-
-  <!-- client section -->
-  <!-- client section 
-  <section class="client_section">
-    <div class="container">
-      <div class="heading_container">
-        <h2>
-          WHAT CUSTOMERS SAY
-        </h2>
-      </div>
-      <div class="carousel-wrap ">
-        <div class="owl-carousel">
-          <div class="item">
-            <div class="box">
-              <div class="img-box">
-                <img src="images/c-1.png" alt="">
-              </div>
-              <div class="detail-box">
-                <h5>
-                  Tempor incididunt <br>
-                  <span>
-                    Dipiscing elit
-                  </span>
-                </h5>
-                <img src="images/quote.png" alt="">
-                <p>
-                  Dipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="box">
-              <div class="img-box">
-                <img src="images/c-2.png" alt="">
-              </div>
-              <div class="detail-box">
-                <h5>
-                  Tempor incididunt <br>
-                  <span>
-                    Dipiscing elit
-                  </span>
-                </h5>
-                <img src="images/quote.png" alt="">
-                <p>
-                  Dipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="item">
-            <div class="box">
-              <div class="img-box">
-                <img src="images/c-3.png" alt="">
-              </div>
-              <div class="detail-box">
-                <h5>
-                  Tempor incididunt <br>
-                  <span>
-                    Dipiscing elit
-                  </span>
-                </h5>
-                <img src="images/quote.png" alt="">
-                <p>
-                  Dipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
--->
-  <!-- end client section -->
-  
-  <!-- Achievement section implement later if needed -->
-
-  <!-- target section -->
-  <!-- 
-
-  <section class="target_section layout_padding2">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-3 col-sm-6">
-          <div class="detail-box">
-            <h2>
-              1000+
-            </h2>
-            <h5>
-              Years of Business
-            </h5>
-          </div>
-        </div>
-        <div class="col-md-3 col-sm-6">
-          <div class="detail-box">
-            <h2>
-              20000+
-            </h2>
-            <h5>
-              Projects Delivered
-            </h5>
-          </div>
-        </div>
-        <div class="col-md-3 col-sm-6">
-          <div class="detail-box">
-            <h2>
-              10000+
-            </h2>
-            <h5>
-              Satisfied Customers
-            </h5>
-          </div>
-        </div>
-        <div class="col-md-3 col-sm-6">
-          <div class="detail-box">
-            <h2>
-              1500+
-            </h2>
-            <h5>
-              Cups of Coffee
-            </h5>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
--->
-  <!-- end target section -->
-
-  <!-- Custom contact by email section implement later if needed -->
-
-  <!-- contact section -->
-  <!-- contact section
-  <section class="contact_section layout_padding">
-    <div class="container">
-
-      <div class="heading_container">
-        <h2>
-          Request A Call Back
-        </h2>
-      </div>
-      <div class="">
-        <div class="">
-          <div class="row">
-            <div class="col-md-9 mx-auto">
-              <div class="contact-form">
-                <form action="">
-                  <div>
-                    <input type="text" placeholder="Full Name ">
-                  </div>
-                  <div>
-                    <input type="text" placeholder="Phone Number">
-                  </div>
-                  <div>
-                    <input type="email" placeholder="Email Address">
-                  </div>
-                  <div>
-                    <input type="text" placeholder="Message" class="input_message">
-                  </div>
-                  <div class="d-flex justify-content-center">
-                    <button type="submit" class="btn_on-hover">
-                      Send
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="map_img-box">
-        <img src="images/map-img.png" alt="">
-      </div>
-    </div>
-  </section>
--->
-
-  <!-- end contact section -->
-
-
   <style>
     .info_section {
       background-color: #333;
@@ -688,7 +534,7 @@
               <a href="https://www.linkedin.com/in/jai-singh-rathore-350993280/" aria-label="LinkedIn">
                 <img src="https://img.icons8.com/ios-filled/50/000000/linkedin.png" alt="LinkedIn">
               </a>
-              <a href="#" aria-label="YouTube">
+              <a href="https://www.youtube.com/@jaizxzx" aria-label="YouTube">
                 <img src="https://img.icons8.com/ios-filled/50/000000/youtube.png" alt="YouTube">
               </a>
               <a href="https://www.artstation.com/jaizxzx" aria-label="ArtStation">
@@ -714,9 +560,6 @@
   </section>
   <!-- footer section -->
 
-  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
-  <script type="text/javascript" src="js/bootstrap.js"></script>
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js">
   </script>
   <!-- owl carousel script 
     -->
