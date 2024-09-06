@@ -1,5 +1,5 @@
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: "Roboto", sans-serif;
   color: #000000;
   background-color: #f5f5f5;
 }
@@ -69,13 +69,74 @@ body {
 }
 
 /*header section*/
+/* Hero Area Styles */
 .hero_area {
   height: 100vh;
-  background-color: #ffffff;
-  background-image: url(../images/Master-Chief.jpeg);
-  background-size: cover;
+  background-color: #000000;
+  position: relative;
+  overflow: hidden;
 }
 
+.hero_background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url(../images/Master-Chief.jpeg);
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  animation: fadeIn 2s ease-in-out forwards;
+}
+
+.hero_mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(0, 0, 0, 0.5) 50%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
+  animation: maskReveal 2.5s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes maskReveal {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Ensure content is above the background and mask */
+.hero_area .container {
+  position: relative;
+  z-index: 2;
+}
+
+/* Adjust text color for better visibility */
+.hero_area,
+.custom_nav-container.navbar-expand-lg .navbar-nav .nav-link,
+.navbar-brand span {
+  color: #ffffff;
+}
 .sub_page .hero_area {
   height: auto;
 }
@@ -709,6 +770,8 @@ a:focus {
 .footer_section a {
   color: #fbfcfd;
 }
+
+
 
 /* end footer section*/
 /*# sourceMappingURL=style.css.map */
