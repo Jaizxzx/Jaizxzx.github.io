@@ -25,6 +25,79 @@
   <link href="css/style.css" rel="stylesheet" />
   <!-- responsive style -->
   <link href="css/responsive.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Quattrocento+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+      .sliding-menu {
+        position: fixed;
+        top: 0;
+        right: -250px;
+        width: 250px;
+        height: 100%;
+        background-color: #333;
+        transition: right 0.3s ease-in-out;
+    }
+    .sliding-menu.open {
+        right: 0;
+    }
+    .sliding-menu ul {
+        list-style-type: none;
+        padding: 0;
+        margin-top: 50px;
+    }
+    .sliding-menu ul li {
+        padding: 10px 20px;
+        transition: all 0.3s ease;
+    }
+    .sliding-menu ul li a {
+        color: white;
+        text-decoration: none;
+        display: block;
+        position: relative;
+        overflow: hidden;
+    }
+    .sliding-menu ul li a::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: #fff;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+    .sliding-menu ul li:hover {
+        background-color: #444;
+        transform: translateX(10px);
+    }
+    .sliding-menu ul li:hover a::after {
+        transform: translateX(0);
+    }
+    .menu-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        cursor: pointer;
+        z-index: 1000;
+    }
+    .bar {
+        width: 25px;
+        height: 3px;
+        background-color: #717171;
+        margin: 5px 0;
+        transition: 0.4s;
+    }
+    .menu-toggle.open .bar:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    .menu-toggle.open .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .menu-toggle.open .bar:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+  </style>
 </head>
 
 <body class="sub_page">
@@ -42,221 +115,405 @@
             <span class="navbar-toggler-icon"></span>
           </button>
 
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
-              <ul class="navbar-nav">
-                <li class="nav-item active">
-                  <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="index.html#about"> About Me </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="index.html#skills"> Skills </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="portfolio.html"> Projects </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="resume.html">Resumé</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="coursework.html">Coursework</a>
-                </li>
-              </ul>
-              <div class="user_option">
-              </div>
-            </div>
-          </div>
+          <div class="menu-toggle" onclick="toggleMenu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        
+        <nav class="sliding-menu" onmouseleave="closeMenu()">
+            <ul>
+                <li><a href="index.html#about">About Me</a></li>
+                <li><a href="index.html#skills">Skills</a></li>
+                <li><a href="portfolio.html">Projects</a></li>
+                <li><a href="resume.html">Resumé</a></li>
+                <li><a href="coursework.html">Coursework</a></li>
+            </ul>
+        </nav>
+    
+        <script>
+            function toggleMenu() {
+            const menu = document.querySelector('.sliding-menu');
+            const menuToggle = document.querySelector('.menu-toggle');
+            menu.classList.toggle('open');
+            menuToggle.classList.toggle('open');
+        }
+
+        function closeMenu() {
+            const menu = document.querySelector('.sliding-menu');
+            const menuToggle = document.querySelector('.menu-toggle');
+            menu.classList.remove('open');
+            menuToggle.classList.remove('open');
+        }
+        </script>
         </nav>
       </div>
     </header>
     <!-- end header section -->
   </div>
+<style>
+      .heading_container h2 {
+      font-size: 36px;
+      background: linear-gradient(to right, orange, #fec016);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .work_container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+  .project-card {
+    width: 280px;
+    margin: 20px;
+    background-color: #00468d;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+  }
+  .project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+  }
+  .project-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  .project-info {
+    padding: 20px;
+  }
+  .project-info h3 {
+    margin-top: 0;
+    color: #bababa;
+  }
+  .project-info p {
+    color: #f6f6f6;
+    font-size: 14px;
+  }
+</style>
 
+<!-- work section -->
+<style>
+  .work_section {
+    padding: 60px 0;
+  }
+
+  .heading_container {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .work_container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    justify-content: center;
+  }
+
+  .project-card {
+    background: #151515;
+    border: 3px solid #242424;
+    border-radius: 8px;
+    overflow: hidden;
+    width: 320px;
+    box-shadow: 0 16px 32px rgba(255, 255, 255, 0.3);
+    margin-bottom: 20px;
+  }
+
+  .project-card img {
+    width: 100%;
+    height: auto;
+  }
+
+  .project-info {
+    padding: 15px;
+  }
+
+  .project-info h3 {
+    margin: 0 0 10px;
+    font-size: 18px;
+  }
+
+  .project-info p {
+    margin: 0;
+    color: #e6e6e6;
+  }
+
+  .more-button {
+    display: block;
+    width: 200px;
+    padding: 10px;
+    text-align: center;
+    font-size: 16px;
+    color: #fff;
+    background-color: #414141;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.3s;
+    margin: 30px auto 0; /* Centers the button */
+    border: 1px solid transparent; /* Adds border for consistency */
+  }
+
+  .more-button:hover {
+    background-color: #fafafa;
+    transform: scale(1.05);
+  }
+
+  .more-button:focus {
+    outline: none;
+    border-color: #717378;
+  }
+</style>
   <!-- work section -->
   <section class="work_section layout_padding">
     <div class="container">
       <div class="heading_container">
         <h2>
-          My Work
+          My Other Projects
         </h2>
         <p>
-          consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation
+          
         </p>
       </div>
       <div class="work_container layout_padding2">
-        <div class="box b-1">
-          <img src="images/w-1.png" alt="">
-        </div>
-        <div class="box b-2">
-          <img src="images/w-2.png" alt="">
-        </div>
-        <div class="box b-3">
-          <img src="images/w-3.png" alt="">
-        </div>
-        <div class="box b-4">
-          <img src="images/w-4.png" alt="">
-        </div>
-      </div>
+        <a href="https://github.com/Jaizxzx/OpenGL.git" class="project-card">
+          <img src="images/opengl_graphic_renderer_color_tester.jpg" alt="OpenGL Graphic/Color Renderer">
+          <div class="project-info">
+            <h3>OpenGL Graphic/Color Renderer Pipeline</h3>
+            <p>A Graphic and Color Rendering and testing Pipeline made in OpenGL.</p>
+          </div>
+        </a>
+        <a href="https://github.com/karthik1900/newsAI.git" class="project-card">
+          <img src="images/news_ai.webp" alt="News AI ">
+          <div class="project-info">
+            <h3>News AI </h3>
+            <p>A personalized news ai agent for your personalized daily dose of news specially brewed for you, made for the AugustAI hackathon.</p>
+          </div>
+        </a>
+        <a href="https://jaizxzx.itch.io/snow-brawler" class="project-card">
+          <img src="images/snow_brawler.jpg" alt="Snow Brawler">
+          <div class="project-info">
+            <h3>Snow Brawler</h3>
+            <p>A fun to play snow ball shooter made in Unreal Engine for the WTFxIGDC game jam 2024.</p>
+          </div>
+        </a>
+        <a href="https://youtu.be/al_qEBUgQ1s?si=tMIapKWN6fAq44_A" class="project-card">
+          <img src="images/star_wars.webp" alt="Star Wars Cinematic">
+          <div class="project-info">
+            <h3>Mandalorian Cinematic</h3>
+            <p>A Mandalorian Cinematic inspired by the Mandalorian Web Series and the Star Wars Universe.</p>
+          </div>
+        </a>
+        <a href="https://jaizxzx.itch.io/lone-survivor" class="project-card">
+          <img src="images/lone_survivor.jpg" alt="Lone Survivor">
+          <div class="project-info">
+            <h3>Lone Survivor</h3>
+            <p>An escape game based in an apocalyptic zombie universe made in Unreal Engine for the Gamedev.tv Game Jam.</p>
+          </div>
+        </a>
     </div>
   </section>
 
   <!-- end work section -->
 
   <style>
-    /* Additional Styles for My Work Section */
-    .work_section {
-      background-color: #f5f5f5;
-    }
 
     .info_section {
-      background-color: #333;
+      background: linear-gradient(to bottom, #2a2a2a, #000000);
       color: white;
-      padding: 50px 0;
+      padding: 80px 0;
+      position: relative;
+      overflow: hidden;
     }
-
-    .info_section h5 {
-      font-size: 1.2rem;
-      margin-bottom: 20px;
-      font-weight: bold;
+    
+    .info_section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, #3c3c3c, #000000);
+      opacity: 0.1;
+      z-index: 0;
     }
-
-    .info_contact,
-    .info_socials {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .contact_item {
-      display: flex;
-      align-items: center;
-      margin-bottom: 15px;
-    }
-
-    .contact_item .img-box {
-      margin-right: 10px;
-      width: 25px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .contact_item p {
-      margin: 0;
-    }
-
-    .social_box {
-      display: flex;
-      gap: 15px;
-    }
-
-    .social_box a {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 40px;
-      height: 40px;
-      background-color: white;
-      border-radius: 50%;
-      transition: all 0.3s ease;
-    }
-
-    .social_box a:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    .social_box img {
-      width: 20px;
-      height: 20px;
-    }
-  </style>
-
-  <!-- info section -->
-  <section class="info_section">
-    <div class="container">
-      <div class="row justify-content-between">
-        <div class="col-md-5">
-          <div class="info_contact">
-            <h5>Contact</h5>
-            <div class="contact_item">
-              <div class="img-box">
-                <img src="images/location-white.png" alt="Location">
+        .info_section .container {
+          position: relative;
+          z-index: 1;
+        }
+        .info_section h5 {
+          font-size: 1.5rem;
+          margin-bottom: 30px;
+          font-weight: bold;
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          position: relative;
+          display: inline-block;
+        }
+        .info_section h5::after {
+          content: '';
+          position: absolute;
+          bottom: -10px;
+          left: 0;
+          width: 50px;
+          height: 3px;
+          background-color: #484848;
+          transition: width 0.3s ease;
+        }
+        .info_section h5:hover::after {
+          width: 100%;
+        }
+        .info_contact, .info_socials {
+          display: flex;
+          flex-direction: column;
+        }
+    
+        .social_box {
+          display: flex;
+          gap: 20px;
+          flex-wrap: wrap;
+        }
+        .social_box a {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 50px;
+          height: 50px;
+          background-color: #515151;
+          border-radius: 50%;
+          transition: all 0.3s ease;
+          position: relative;
+          overflow: hidden;
+        }
+        .social_box a::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color: #9b9b9b;
+          transform: scale(0);
+          transition: transform 0.3s ease;
+          border-radius: 50%;
+        }
+        .social_box a:hover::before {
+          transform: scale(1);
+        }
+        .social_box a:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        .social_box img {
+          width: 25px;
+          height: 25px;
+          position: relative;
+          z-index: 1;
+          transition: all 0.3s ease;
+        }
+        .social_box a:hover img {
+          filter: brightness(0) invert(1);
+        }
+        @media (max-width: 768px) {
+          .info_section {
+            padding: 50px 0;
+          }
+          .social_box {
+            justify-content: center;
+          }
+        }
+    </style>
+    
+    <section class="info_section">
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col-md-5">
+            <div class="info_contact">
+              <h5>Get in Touch</h5>
+              <div class="contact_item">
+                <div class="img-box">
+                  <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <p>Bangalore, India</p>
               </div>
-              <p>Bangalore, India</p>
-            </div>
-            <div class="contact_item">
-              <div class="img-box">
-                <img src="images/telephone-white.png" alt="Phone">
+              <div class="contact_item">
+                <div class="img-box">
+                  <i class="fas fa-phone-alt"></i>
+                </div>
+                <p>+91 7976128772</p>
               </div>
-              <p>+91 7976128772</p>
-            </div>
-            <div class="contact_item">
-              <div class="img-box">
-                <img src="images/envelope-white.png" alt="Email">
+              <div class="contact_item">
+                <div class="img-box">
+                  <i class="fas fa-envelope"></i>
+                </div>
+                <p>jaisinghrathore4432@gmail.com</p>
               </div>
-              <p>jaisinghrathore4432@gmail.com</p>
             </div>
           </div>
-        </div>
-        <div class="col-md-5">
-          <div class="info_socials">
-            <h5>Socials</h5>
-            <div class="social_box">
-              <a href="https://github.com/Jaizxzx" aria-label="GitHub">
-                <img src="https://img.icons8.com/ios-filled/50/000000/github.png" alt="GitHub">
-              </a>
-              <a href="https://www.linkedin.com/in/jai-singh-rathore-350993280/" aria-label="LinkedIn">
-                <img src="https://img.icons8.com/ios-filled/50/000000/linkedin.png" alt="LinkedIn">
-              </a>
-              <a href="#" aria-label="YouTube">
-                <img src="https://img.icons8.com/ios-filled/50/000000/youtube.png" alt="YouTube">
-              </a>
-              <a href="https://www.artstation.com/jaizxzx" aria-label="ArtStation">
-                <img src="https://img.icons8.com/ios-filled/50/000000/artstation.png" alt="ArtStation">
-              </a>
+          <div class="col-md-5">
+            <div class="info_socials">
+              <h5>Connect with Me</h5>
+              <div class="social_box">
+                <a href="https://github.com/Jaizxzx" aria-label="GitHub">
+                  <img src="https://img.icons8.com/ios-filled/50/000000/github.png" alt="GitHub">
+                </a>
+                <a href="https://www.linkedin.com/in/jai-singh-rathore-350993280/" aria-label="LinkedIn">
+                  <img src="https://img.icons8.com/ios-filled/50/000000/linkedin.png" alt="LinkedIn">
+                </a>
+                <a href="https://www.youtube.com/@jaizxzx" aria-label="YouTube">
+                  <img src="https://img.icons8.com/ios-filled/50/000000/youtube.png" alt="YouTube">
+                </a>
+                <a href="https://www.artstation.com/jaizxzx" aria-label="ArtStation">
+                  <img src="https://img.icons8.com/ios-filled/50/000000/artstation.png" alt="ArtStation">
+                </a>
+                <a href="https://leetcode.com/u/Jaizxzx/" aria-label="LeetCode">
+                  <img src="images/leet code.png" alt="LeetCode">
+                </a>              
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-  <!-- end info_section -->
-
-  <section id="contact" class="scroll-target">
-    <!-- This section is intentionally left empty or you can add content if needed -->
-  </section>
-  <!-- footer section -->
-  <section class="container-fluid footer_section">
-    <p>
-      &copy; 2024 All Rights Reserved By
-      <a href="https://www.linkedin.com/in/jai-singh-rathore-350993280/">Jai Singh Rathore</a>
-    </p>
-  </section>
-  <!-- footer section -->
-  <!-- owl carousel script -->
-  <script type="text/javascript">
-    $(".owl-carousel").owlCarousel({
-      loop: true,
-      margin: 0,
-      navText: [],
-      center: true,
-      autoplay: true,
-      autoplayHoverPause: true,
-      responsive: {
-        0: {
-          items: 1
-        },
-        1000: {
-          items: 3
-        }
-      }
-    });
-  </script>
-  <!-- end owl carousel script -->
-
-</body>
-
-</html>
+    </section>
+      <!-- end info_section -->
+    
+      <section id="contact" class="scroll-target">
+        <!-- This section is intentionally left empty or you can add content if needed -->
+      </section>
+      <!-- footer section -->
+      <section class="container-fluid footer_section">
+        <p>
+          &copy; 2024 All Rights Reserved By
+          <a href="https://www.linkedin.com/in/jai-singh-rathore-350993280/">Jai Singh Rathore</a>
+        </p>
+      </section>
+      <!-- footer section -->
+    
+      </script>
+      <!-- owl carousel script 
+        -->
+      <script type="text/javascript">
+        $(".owl-carousel").owlCarousel({
+          loop: true,
+          margin: 0,
+          navText: [],
+          center: true,
+          autoplay: true,
+          autoplayHoverPause: true,
+          responsive: {
+            0: {
+              items: 1
+            },
+            1000: {
+              items: 3
+            }
+          }
+        });
+      </script>
+      <!-- end owl carousel script -->
+    
+    </body>
+    
+    </html>

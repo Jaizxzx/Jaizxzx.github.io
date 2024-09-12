@@ -21,15 +21,23 @@
   <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
 
   <!-- fonts style -->
+   
   <!-- Custom styles for this template -->
   <link href="css/style.css" rel="stylesheet" />
   <!-- responsive style -->
   <link href="css/responsive.css" rel="stylesheet" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Quattrocento+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     /* Optional: Add smooth scrolling for the whole page */
     html {
       scroll-behavior: smooth;
     }
+    body {
+      font-family: 'Quattrocento Sans', sans-serif;
+    }
+    
     .scroll-down-arrow {
             position: absolute;
             bottom: 50px;
@@ -54,6 +62,139 @@
             0%, 100% { opacity: 0.7; }
             50% { opacity: 0.3; }
         }
+        .sliding-menu {
+            position: fixed;
+            top: 0;
+            right: -250px;
+            width: 250px;
+            height: 100%;
+            background-color: #333;
+            transition: right 0.3s ease-in-out;
+        }
+        .sliding-menu.open {
+            right: 0;
+        }
+        .sliding-menu ul {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 50px;
+        }
+        .sliding-menu ul li {
+            padding: 10px 20px;
+            transition: all 0.3s ease;
+        }
+        .sliding-menu ul li a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            position: relative;
+            overflow: hidden;
+        }
+        .sliding-menu ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #fff;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+        .sliding-menu ul li:hover {
+            background-color: #444;
+            transform: translateX(10px);
+        }
+        .sliding-menu ul li:hover a::after {
+            transform: translateX(0);
+        }
+        .menu-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+        .bar {
+            width: 25px;
+            height: 3px;
+            background-color: #717171;
+            margin: 5px 0;
+            transition: 0.4s;
+        }
+        .menu-toggle.open .bar:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+        .menu-toggle.open .bar:nth-child(2) {
+            opacity: 0;
+        }
+        .menu-toggle.open .bar:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+        @keyframes shine {
+    0% {
+      background-position: -100%;
+    }
+    100% {
+      background-position: 200%;
+    }
+  }
+
+  /* Keyframe animation for the blur-to-clear effect */
+  @keyframes blur {
+    0% {
+      filter: blur(5px);
+    }
+    100% {
+      filter: blur(0);
+    }
+  }
+
+  /* Container styling */
+  .shining-text-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .shining-text {
+      font-size: 36px;
+      font-weight: bold;
+      background: linear-gradient(to right, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.2));
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      animation: shine 1.5s ease-out forwards, blur 1.5s ease-in forwards;
+      background-size: 300%;
+      display: inline-block;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .shining-text h2 {
+      font-size: 48px;
+      font-weight: bold;
+      background: linear-gradient(to right, #821c02, #feb47b); /* Gradient for 'Welcome to' */
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      animation: shine 1.5s ease-out forwards, blur 1.5s ease-in forwards;
+      background-size: 300%;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .shining-text h1 {
+      font-size: 64px;
+      font-weight: bold;
+      background: linear-gradient(to right, #a9a9a9, #35373a); /* Gradient for 'Jai Singh's Portfolio' */
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      animation: shine 1.5s ease-out forwards, blur 1.5s ease-in forwards;
+      background-size: 300%;
+      text-align: center;
+    }
   </style>
 </head>
 
@@ -74,32 +215,37 @@
             <span class="navbar-toggler-icon"></span>
           </button>
 
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
-              <ul class="navbar-nav  ">
-                <li class="nav-item active">
-                  <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#about"> About Me </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#skills"> Skills </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="portfolio.html"> Projects </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="resume.html">Resumé</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="coursework.html">Coursework</a>
-                </li>
-              </ul>
-              <div class="user_option">
-              </div>
-            </div>
-          </div>
+          <div class="menu-toggle" onclick="toggleMenu()">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        
+        <nav class="sliding-menu" onmouseleave="closeMenu()">
+            <ul>
+                <li><a href="#about">About Me</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="resume.html">Resumé</a></li>
+                <li><a href="coursework.html">Coursework</a></li>
+            </ul>
+        </nav>
+    
+        <script>
+            function toggleMenu() {
+            const menu = document.querySelector('.sliding-menu');
+            const menuToggle = document.querySelector('.menu-toggle');
+            menu.classList.toggle('open');
+            menuToggle.classList.toggle('open');
+        }
+
+        function closeMenu() {
+            const menu = document.querySelector('.sliding-menu');
+            const menuToggle = document.querySelector('.menu-toggle');
+            menu.classList.remove('open');
+            menuToggle.classList.remove('open');
+        }
+        </script>
         </nav>
       </div>
     </header>
@@ -112,13 +258,11 @@
               <div class="row">
                 <div class="col">
                   <div class="detail-box">
-                    <div>
-                      <h2>
-                        Welcome to
-                      </h2>
-                      <h1>
-                        Jai Singh's Portfolio
-                      </h1>
+                    <div class="shining-text-container">
+                      <!-- Placing "Welcome to" above "Jai Singh's Portfolio" -->
+                      <h2 class="shining-text">Welcome to</h2>
+                      <h1 class="shining-text">Jai Singh's Portfolio</h1>
+                    </div>
                       <p>
                       </p>
                       <div class="">
@@ -142,9 +286,6 @@
     <!-- end slider section -->
   </div>
 
-  <!-- do section -->
-  <!-- (The do section remains unchanged) -->
-
   <script>
     function scrollToNextSection() {
       const nextSection = document.querySelector('.do_section');
@@ -153,124 +294,199 @@
       }
     }
   </script>
-
-  <!-- do section -->
-  <style>
-    /* Basic styling for the section */
-    .do_section {
-      padding: 40px 0;
-      background-color: #f5f5f5; /* Light background for contrast */
-    }
-  
-    .heading_container {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-  
-    /* Applying linear gradient to the text color */
-    .heading_container h2 {
-      font-size: 36px;
-      background: linear-gradient(to right, orange, #fec016);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-  
-    .skill-badges {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center; /* Center align badges */
-      gap: 15px; /* Space between badges */
-    }
-  
-    .skill-badges img {
-      margin: 5px;
-      transition: transform 0.3s, box-shadow 0.3s; /* Animation for transform and shadow */
-      border-radius: 5px; /* Rounded corners for badges */
-    }
-  
-    .skill-badges img:hover {
-      transform: scale(1.1); /* Slightly enlarge the badge on hover */
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow effect on hover */
-    }
-  </style>
-</head>
-<body>
-  <!-- Skills Section -->
-  <section class="do_section layout_padding", id="skills">
-    <div class="container">
-      <div class="heading_container">
-        <h2>Skills</h2>
-      </div>
-      <div class="do_container">
-        <div class="skill-badges">
-          <img src="https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white" alt="C++">
-          <img src="https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54" alt="Python">
-          <img src="https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white" alt="C">
-          <img src="https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=java&logoColor=white" alt="Java">
-          <img src="https://img.shields.io/badge/Unreal%20Engine-0E1128.svg?style=for-the-badge&logo=Unreal-Engine&logoColor=white" alt="Unreal Engine">
-          <img src="https://img.shields.io/badge/OpenGL-%23FFFFFF.svg?style=for-the-badge&logo=opengl" alt="OpenGL">
-          <img src="https://img.shields.io/badge/GLSL-5586A4.svg?style=for-the-badge&logo=OpenGL&logoColor=white" alt="GLSL">
-          <img src="https://img.shields.io/badge/Blender-%23F5792A.svg?style=for-the-badge&logo=blender&logoColor=white" alt="Blender">
-          <img src="https://img.shields.io/badge/Visual%20Studio-5C2D91.svg?style=for-the-badge&logo=visual-studio&logoColor=white" alt="Visual Studio">
-          <img src="https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white" alt="Visual Studio Code">
-          <img src="https://img.shields.io/badge/CLion-black?style=for-the-badge&logo=clion&logoColor=white" alt="CLion">
-          <img src="https://img.shields.io/badge/Rider-000000.svg?style=for-the-badge&logo=Rider&logoColor=white" alt="JetBrains Rider">
-          <img src="https://img.shields.io/badge/numpy-%23013243.svg?style=for-the-badge&logo=numpy&logoColor=white" alt="NumPy">
-          <img src="https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white" alt="Pandas">
-          <img src="https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white" alt="SciKit Learn">
-          <img src="https://img.shields.io/badge/Matplotlib-%23ffffff.svg?style=for-the-badge&logo=Matplotlib&logoColor=black" alt="Matplotlib">
-          <img src="https://img.shields.io/badge/TensorFlow-%23FF6F00.svg?style=for-the-badge&logo=TensorFlow&logoColor=white" alt="TensorFlow">
-          <img src="https://img.shields.io/badge/Keras-%23D00000.svg?style=for-the-badge&logo=Keras&logoColor=white" alt="Keras">
-          <img src="https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=for-the-badge&logo=PyTorch&logoColor=white" alt="PyTorch">
-          <img src="https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white" alt="Git">
-          <img src="https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white" alt="GitHub">
-          <img src="https://img.shields.io/badge/gitlab-%23181717.svg?style=for-the-badge&logo=gitlab&logoColor=white" alt="GitLab">
-          <img src="https://img.shields.io/badge/-PERFORCE%20HELIX-404040?style=for-the-badge&logo=Perforce&logoColor=white" alt="Perforce">
+    
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Animated Skills Section</title>
+      <style>
+        /* Basic styling for the section */
+        .do_section {
+          padding: 40px 0;
+          background-color: #000000; /* Light background for contrast */
+        }
+      
+        .heading_container {
+          text-align: center;
+          margin-bottom: 20px;
+        }
+      
+        /* Applying linear gradient to the text color */
+        .heading_container h2 {
+          font-size: 36px;
+          background: linear-gradient(to right, orange, #fec016);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+      
+        .skill-badges {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center; /* Center align badges */
+          gap: 15px; /* Space between badges */
+        }
+      
+        .skill-badges img {
+          margin: 5px;
+          transition: transform 0.3s, box-shadow 0.3s; /* Animation for transform and shadow */
+          border-radius: 5px; /* Rounded corners for badges */
+          opacity: 0;
+          transform: translateY(20px);
+          transition: opacity 0.5s ease, transform 0.5s ease, box-shadow 0.3s ease;
+        }
+      
+        .skill-badges img.animate {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      
+        .skill-badges img:hover {
+          transform: scale(1.1) translateY(0); /* Slightly enlarge the badge on hover */
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow effect on hover */
+        }
+      </style>
+    </head>
+    <body>
+      <!-- Skills Section -->
+      <section class="do_section layout_padding" id="skills">
+        <div class="container">
+          <div class="heading_container">
+            <h2>Skills</h2>
+          </div>
+          <div class="do_container">
+            <div class="skill-badges">
+              <img src="https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white" alt="C++">
+              <img src="https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54" alt="Python">
+              <img src="https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white" alt="C">
+              <img src="https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=java&logoColor=white" alt="Java">
+              <img src="https://img.shields.io/badge/Unreal%20Engine-0E1128.svg?style=for-the-badge&logo=Unreal-Engine&logoColor=white" alt="Unreal Engine">
+              <img src="https://img.shields.io/badge/OpenGL-%23FFFFFF.svg?style=for-the-badge&logo=opengl" alt="OpenGL">
+              <img src="https://img.shields.io/badge/GLSL-5586A4.svg?style=for-the-badge&logo=OpenGL&logoColor=white" alt="GLSL">
+              <img src="https://img.shields.io/badge/Blender-%23F5792A.svg?style=for-the-badge&logo=blender&logoColor=white" alt="Blender">
+              <img src="https://img.shields.io/badge/Visual%20Studio-5C2D91.svg?style=for-the-badge&logo=visual-studio&logoColor=white" alt="Visual Studio">
+              <img src="https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white" alt="Visual Studio Code">
+              <img src="https://img.shields.io/badge/CLion-black?style=for-the-badge&logo=clion&logoColor=white" alt="CLion">
+              <img src="https://img.shields.io/badge/Rider-000000.svg?style=for-the-badge&logo=Rider&logoColor=white" alt="JetBrains Rider">
+              <img src="https://img.shields.io/badge/numpy-%23013243.svg?style=for-the-badge&logo=numpy&logoColor=white" alt="NumPy">
+              <img src="https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white" alt="Pandas">
+              <img src="https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white" alt="SciKit Learn">
+              <img src="https://img.shields.io/badge/Matplotlib-%23ffffff.svg?style=for-the-badge&logo=Matplotlib&logoColor=black" alt="Matplotlib">
+              <img src="https://img.shields.io/badge/TensorFlow-%23FF6F00.svg?style=for-the-badge&logo=TensorFlow&logoColor=white" alt="TensorFlow">
+              <img src="https://img.shields.io/badge/Keras-%23D00000.svg?style=for-the-badge&logo=Keras&logoColor=white" alt="Keras">
+              <img src="https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=for-the-badge&logo=PyTorch&logoColor=white" alt="PyTorch">
+              <img src="https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white" alt="Git">
+              <img src="https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white" alt="GitHub">
+              <img src="https://img.shields.io/badge/gitlab-%23181717.svg?style=for-the-badge&logo=gitlab&logoColor=white" alt="GitLab">
+              <img src="https://img.shields.io/badge/-PERFORCE%20HELIX-404040?style=for-the-badge&logo=Perforce&logoColor=white" alt="Perforce">
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </section>
-</body>
-</html>
+      </section>
+    
+      <script>
+        function isElementInViewport(el) {
+          const rect = el.getBoundingClientRect();
+          return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+          );
+        }
+    
+        function animateSkillBadges() {
+          const skillSection = document.getElementById('skills');
+          const skillBadges = skillSection.querySelectorAll('.skill-badges img');
+          
+          if (isElementInViewport(skillSection)) {
+            skillBadges.forEach((badge, index) => {
+              setTimeout(() => {
+                badge.classList.add('animate');
+              }, index * 100); // Stagger the animation of each badge
+            });
+            
+            // Remove the scroll event listener once the animation has been triggered
+            window.removeEventListener('scroll', animateSkillBadges);
+          }
+        }
+    
+        // Add scroll event listener
+        window.addEventListener('scroll', animateSkillBadges);
+        // Also check on load in case the skills section is already in view
+        window.addEventListener('load', animateSkillBadges);
+      </script>
+    </body>
+    </html>
   
   <!-- end do section -->
 
   <!-- who section -->
+<section class="who_section" id="about">
+  <style>
+    .who_section {
+      background-color: #000000; /* Adding a dark background for better contrast with white text */
+      padding: 60px 0;
+    }
 
-  <section class="who_section", id="about">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-5">
-          <div class="img-box">
-            <img src="images/me.webp" alt="">
-          </div>
+    .detail-box {
+      color: #b7b7b7; /* Changing the text color to white */
+    }
+
+    .detail-box a {
+      color: #fec016; /* Custom color for the 'Read More' link */
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .detail-box a:hover {
+      color: #ffcc33; /* Hover effect for the 'Read More' link */
+    }
+
+    .heading_container h2 {
+      font-size: 36px;
+      color: #ffffff; /* Making the heading white as well */
+      margin-bottom: 20px;
+    }
+
+    /* Styling for the image container */
+    .img-box img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Adding a shadow around the image */
+    }
+  </style>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5">
+        <div class="img-box">
+          <img src="images/me.webp" alt="A picture of me">
         </div>
-        <div class="col-md-7">
-          <div class="detail-box">
-            <div class="heading_container">
-              <h2>
-                About Me
-              </h2>
-            </div>
-            <p>
-              A Game Developer with a Passion for Unreal Engine, C++, AI, and GPU Technology.
-
-              As a game developer, I thrive on creating immersive and engaging experiences using Unreal Engine. With a strong foundation in C++ and Blueprints, I have developed several projects that showcase my expertise in game design, programming, and asset creation.
-
-              Driven by a curiosity for emerging technologies, I have cultivated a strong passion for Artificial Intelligence (AI) and Machine Learning (ML). I have a solid understanding of Python and have applied ML techniques to various projects, demonstrating my ability to integrate intelligent systems into game development.
-
-              With a keen interest in GPU technology and 3D graphics, including knowledge of OpenGL, I am driven to push the boundaries of visual fidelity and performance in the domain of 3D programming.
-            </p>
-            <div>
-              <a href="">
-                Read More
-              </a>
-            </div>
+      </div>
+      <div class="col-md-7">
+        <div class="detail-box">
+          <div class="heading_container">
+            <h2>About Me</h2>
+          </div>
+          <p>
+            A Game Developer with a Passion for Unreal Engine, C++, AI, and GPU Technology.
+            <br><br>
+            As a game developer, I thrive on creating immersive and engaging experiences using Unreal Engine. With a strong foundation in C++ and Blueprints, I have developed several projects that showcase my expertise in game design, programming, and asset creation.
+            <br><br>
+            Driven by a curiosity for emerging technologies, I have cultivated a strong passion for Artificial Intelligence (AI) and Machine Learning (ML). I have a solid understanding of Python and have applied ML techniques to various projects, demonstrating my ability to integrate intelligent systems into game development.
+            <br><br>
+            With a keen interest in GPU technology and 3D graphics, including knowledge of OpenGL, I am driven to push the boundaries of visual fidelity and performance in the domain of 3D programming.
+          </p>
+          <div>
+            <!-- Read More button implement later if needed <a href="#">Read More</a> -->
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- end who section -->
 
@@ -285,7 +501,7 @@
     .project-card {
       width: 280px;
       margin: 20px;
-      background-color: #f8f9fa;
+      background-color: #00468d;
       border-radius: 10px;
       overflow: hidden;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
@@ -305,10 +521,10 @@
     }
     .project-info h3 {
       margin-top: 0;
-      color: #333;
+      color: #bababa;
     }
     .project-info p {
-      color: #666;
+      color: #f6f6f6;
       font-size: 14px;
     }
   </style>
@@ -332,12 +548,12 @@
     }
 
     .project-card {
-      background: #fff;
-      border: 1px solid #ddd;
+      background: #151515;
+      border: 3px solid #242424;
       border-radius: 8px;
       overflow: hidden;
       width: 320px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 16px 32px rgba(255, 255, 255, 0.3);
       margin-bottom: 20px;
     }
 
@@ -357,7 +573,7 @@
 
     .project-info p {
       margin: 0;
-      color: #666;
+      color: #e6e6e6;
     }
 
     .more-button {
@@ -367,7 +583,7 @@
       text-align: center;
       font-size: 16px;
       color: #fff;
-      background-color: #000000;
+      background-color: #414141;
       border-radius: 5px;
       text-decoration: none;
       transition: background-color 0.3s, transform 0.3s;
@@ -376,7 +592,7 @@
     }
 
     .more-button:hover {
-      background-color: #717378;
+      background-color: #fafafa;
       transform: scale(1.05);
     }
 
@@ -389,52 +605,52 @@
 <body>
   <!-- Your other sections -->
 
-  <section class="work_section layout_padding">
+  <section class="work_section layout_padding" id="projects">
     <div class="container">
-      <div class="heading_container">
+      <div class="heading_container" >
         <h2>
           Projects
         </h2>
         <p>
-          Here are some of my recent projects.
+            <!-- Projects Subheading -->
         </p>
       </div>
-      <div class="work_container layout_padding2">
-        <div class="project-card">
-          <img src="/api/placeholder/280/200" alt="Project 1">
+      <div class="work_container layout_padding2" >
+        <a href="https://github.com/Jaizxzx/Discord_Plugin_for_Unreal_Engine" class="project-card">
+          <img src="images/discord.png" alt="Discord Plugin for Unreal">
           <div class="project-info">
-            <h3>Project 1</h3>
-            <p>A brief description of Project 1 and its key features.</p>
+            <h3>Discord Unreal Engine Plugin</h3>
+            <p>A Discord Rich Presence integration plugin for Unreal Engine projects written in C++.</p>
           </div>
-        </div>
-        <div class="project-card">
-          <img src="/api/placeholder/280/200" alt="Project 2">
+        </a>
+        <a href="https://github.com/Jaizxzx/Neural-Network_and_Deep-Learning/blob/main/MIT_Deep_Learning/lab1/Part2_Music_Generation.ipynb" class="project-card">
+          <img src="images/tune.gif" alt="Music Tune Generator">
           <div class="project-info">
-            <h3>Project 2</h3>
-            <p>An overview of Project 2, highlighting its unique aspects.</p>
+            <h3>Music Tune Generator</h3>
+            <p>A Music Tune Generator built using RNN's to generate music tune from the raw sheet in Alphabetic notation.</p>
           </div>
-        </div>
-        <div class="project-card">
-          <img src="/api/placeholder/280/200" alt="Project 3">
+        </a>
+        <a href="https://github.com/Jaizxzx/Neural-Network_and_Deep-Learning/blob/main/MIT_Deep_Learning/lab2/Part2_Debiasing_Solution.ipynb" class="project-card">
+          <img src="images/debiasing_faces.jpg" alt="Debiasing Facial Detection">
           <div class="project-info">
-            <h3>Project 3</h3>
-            <p>Details about Project 3, including its main objectives and outcomes.</p>
+            <h3>Debiasing Facial Detection</h3>
+            <p>A facial detection model that learns the latent variables underlying face image datasets to eliminate any bias from the model.</p>
           </div>
-        </div>
-        <div class="project-card">
-          <img src="/api/placeholder/280/200" alt="Project 4">
+        </a>
+        <a href="https://www.artstation.com/artwork/5WXZn1" class="project-card">
+          <img src="images/Halo-Project.jpeg" alt="Halo Remake">
           <div class="project-info">
-            <h3>Project 4</h3>
-            <p>A summary of Project 4, emphasizing its innovative features.</p>
+            <h3>Halo Remake</h3>
+            <p>A remake of the classic game Halo made in Unreal Engine. ( Work in Progress )</p>
           </div>
-        </div>
-        <div class="project-card">
-          <img src="/api/placeholder/280/200" alt="Project 5">
+        </a>
+        <a href="https://github.com/Jaizxzx/UE-Toon-Tanks" class="project-card">
+          <img src="images/toon-tanks.jpg" alt="Toon Tanks">
           <div class="project-info">
-            <h3>Project 5</h3>
-            <p>An explanation of Project 5, showcasing its impact and results.</p>
+            <h3>Toon Tanks</h3>
+            <p>A fun to play cartoonish theme-based tank game.</p>
           </div>
-        </div>
+        </a>
       </div>
       <!-- More Projects Button -->
       <a href="portfolio.html" class="more-button">More Projects</a>
@@ -444,108 +660,164 @@
   <!-- end work section -->
 
   <style>
-    .info_section {
-      background-color: #333;
-      color: white;
-      padding: 50px 0;
+
+.info_section {
+  background: linear-gradient(to bottom, #2a2a2a, #000000);
+  color: white;
+  padding: 80px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.info_section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, #3c3c3c, #000000);
+  opacity: 0.1;
+  z-index: 0;
+}
+    .info_section .container {
+      position: relative;
+      z-index: 1;
     }
     .info_section h5 {
-      font-size: 1.2rem;
-      margin-bottom: 20px;
+      font-size: 1.5rem;
+      margin-bottom: 30px;
       font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      position: relative;
+      display: inline-block;
+    }
+    .info_section h5::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background-color: #484848;
+      transition: width 0.3s ease;
+    }
+    .info_section h5:hover::after {
+      width: 100%;
     }
     .info_contact, .info_socials {
       display: flex;
       flex-direction: column;
     }
-    .contact_item {
-      display: flex;
-      align-items: center;
-      margin-bottom: 15px;
-    }
-    .contact_item .img-box {
-      margin-right: 10px;
-      width: 25px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .contact_item p {
-      margin: 0;
-    }
+
     .social_box {
       display: flex;
-      gap: 15px;
+      gap: 20px;
+      flex-wrap: wrap;
     }
     .social_box a {
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 40px;
-      height: 40px;
-      background-color: white;
+      width: 50px;
+      height: 50px;
+      background-color: #515151;
       border-radius: 50%;
       transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .social_box a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #9b9b9b;
+      transform: scale(0);
+      transition: transform 0.3s ease;
+      border-radius: 50%;
+    }
+    .social_box a:hover::before {
+      transform: scale(1);
     }
     .social_box a:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
     }
     .social_box img {
-      width: 20px;
-      height: 20px;
+      width: 25px;
+      height: 25px;
+      position: relative;
+      z-index: 1;
+      transition: all 0.3s ease;
     }
-  </style>
-  
-  <!-- info section -->
-  <section class="info_section">
-    <div class="container">
-      <div class="row justify-content-between">
-        <div class="col-md-5">
-          <div class="info_contact">
-            <h5>Contact</h5>
-            <div class="contact_item">
-              <div class="img-box">
-                <img src="images/location-white.png" alt="Location">
-              </div>
-              <p>Bangalore, India</p>
+    .social_box a:hover img {
+      filter: brightness(0) invert(1);
+    }
+    @media (max-width: 768px) {
+      .info_section {
+        padding: 50px 0;
+      }
+      .social_box {
+        justify-content: center;
+      }
+    }
+</style>
+
+<section class="info_section">
+  <div class="container">
+    <div class="row justify-content-between">
+      <div class="col-md-5">
+        <div class="info_contact">
+          <h5>Get in Touch</h5>
+          <div class="contact_item">
+            <div class="img-box">
+              <i class="fas fa-map-marker-alt"></i>
             </div>
-            <div class="contact_item">
-              <div class="img-box">
-                <img src="images/telephone-white.png" alt="Phone">
-              </div>
-              <p>+91 7976128772</p>
+            <p>Bangalore, India</p>
+          </div>
+          <div class="contact_item">
+            <div class="img-box">
+              <i class="fas fa-phone-alt"></i>
             </div>
-            <div class="contact_item">
-              <div class="img-box">
-                <img src="images/envelope-white.png" alt="Email">
-              </div>
-              <p>jaisinghrathore4432@gmail.com</p>
+            <p>+91 7976128772</p>
+          </div>
+          <div class="contact_item">
+            <div class="img-box">
+              <i class="fas fa-envelope"></i>
             </div>
+            <p>jaisinghrathore4432@gmail.com</p>
           </div>
         </div>
-        <div class="col-md-5">
-          <div class="info_socials">
-            <h5>Socials</h5>
-            <div class="social_box">
-              <a href="https://github.com/Jaizxzx" aria-label="GitHub">
-                <img src="https://img.icons8.com/ios-filled/50/000000/github.png" alt="GitHub">
-              </a>
-              <a href="https://www.linkedin.com/in/jai-singh-rathore-350993280/" aria-label="LinkedIn">
-                <img src="https://img.icons8.com/ios-filled/50/000000/linkedin.png" alt="LinkedIn">
-              </a>
-              <a href="https://www.youtube.com/@jaizxzx" aria-label="YouTube">
-                <img src="https://img.icons8.com/ios-filled/50/000000/youtube.png" alt="YouTube">
-              </a>
-              <a href="https://www.artstation.com/jaizxzx" aria-label="ArtStation">
-                <img src="https://img.icons8.com/ios-filled/50/000000/artstation.png" alt="ArtStation">
-              </a>              
-            </div>
+      </div>
+      <div class="col-md-5">
+        <div class="info_socials">
+          <h5>Connect with Me</h5>
+          <div class="social_box">
+            <a href="https://github.com/Jaizxzx" aria-label="GitHub">
+              <img src="https://img.icons8.com/ios-filled/50/000000/github.png" alt="GitHub">
+            </a>
+            <a href="https://www.linkedin.com/in/jai-singh-rathore-350993280/" aria-label="LinkedIn">
+              <img src="https://img.icons8.com/ios-filled/50/000000/linkedin.png" alt="LinkedIn">
+            </a>
+            <a href="https://www.youtube.com/@jaizxzx" aria-label="YouTube">
+              <img src="https://img.icons8.com/ios-filled/50/000000/youtube.png" alt="YouTube">
+            </a>
+            <a href="https://www.artstation.com/jaizxzx" aria-label="ArtStation">
+              <img src="https://img.icons8.com/ios-filled/50/000000/artstation.png" alt="ArtStation">
+            </a>
+            <a href="https://leetcode.com/u/Jaizxzx/" aria-label="LeetCode">
+              <img src="images/leet code.png" alt="LeetCode">
+            </a>              
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
   <!-- end info_section -->
 
   <section id="contact" class="scroll-target">
