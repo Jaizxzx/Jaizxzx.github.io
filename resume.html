@@ -5,44 +5,86 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resume - Jai Singh Rathore</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --bg-color: #1d1d1d;
+            --text-color: #5d5d5d;
+            --menu-bg: #2a2a2a;
+            --menu-text: #ffffff;
+            --btn-bg: #515151;
+            --btn-text: #ffffff;
+            
+            --darkbg:#251D29;
+            --darkt: #FFD1F7;
+            --lightbg: #fff;
+            --lightt: #D43370;
+            
+            --toggleHeight: 16em;
+            --toggleWidth: 30em;
+            --toggleBtnRadius: 10em;
+
+            --bgColor--night: #423966;
+            --toggleBtn-bgColor--night: var(--bgColor--night);
+            --mooncolor: #D9FBFF;
+            --bgColor--day: #9ee3fb;
+            --toggleBtn-bgColor--day: var(--bgColor--day);
+        }
+
         body {
             font-family: Arial, sans-serif;
-            background-color: #000000;
+            background-color: var(--bg-color);
+            color: var(--text-color);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             padding: 20px;
+            transition: background-color 0.3s, color 0.3s;
         }
+
+        body.light-theme {
+            --bg-color: #dfdfdf;
+            --text-color: #3d3d3d;
+            --menu-bg: #333333;
+            --menu-text: #ffffff;
+            --btn-bg: #8e8e8e;
+            --btn-text: #000000;
+        }
+
         .sliding-menu {
             position: fixed;
             top: 0;
             right: -250px;
             width: 250px;
             height: 100%;
-            background-color: #333;
+            background-color: var(--menu-bg);
             transition: right 0.3s ease-in-out;
         }
+
         .sliding-menu.open {
             right: 0;
         }
+
         .sliding-menu ul {
             list-style-type: none;
             padding: 0;
             margin-top: 50px;
         }
+
         .sliding-menu ul li {
             padding: 10px 20px;
             transition: all 0.3s ease;
         }
+
         .sliding-menu ul li a {
-            color: white;
+            color: var(--menu-text);
             text-decoration: none;
             display: block;
             position: relative;
             overflow: hidden;
         }
+
         .sliding-menu ul li a::after {
             content: '';
             position: absolute;
@@ -50,17 +92,20 @@
             left: 0;
             width: 100%;
             height: 2px;
-            background-color: #fff;
+            background-color: var(--menu-text);
             transform: translateX(-100%);
             transition: transform 0.3s ease;
         }
+
         .sliding-menu ul li:hover {
             background-color: #444;
             transform: translateX(10px);
         }
+
         .sliding-menu ul li:hover a::after {
             transform: translateX(0);
         }
+
         .menu-toggle {
             position: fixed;
             top: 20px;
@@ -68,90 +113,168 @@
             cursor: pointer;
             z-index: 1000;
         }
+
         .bar {
             width: 25px;
             height: 3px;
-            background-color: #717171;
+            background-color: var(--text-color);
             margin: 5px 0;
             transition: 0.4s;
         }
+
         .menu-toggle.open .bar:nth-child(1) {
             transform: rotate(-45deg) translate(-5px, 6px);
         }
+
         .menu-toggle.open .bar:nth-child(2) {
             opacity: 0;
         }
+
         .menu-toggle.open .bar:nth-child(3) {
             transform: rotate(45deg) translate(-5px, -6px);
         }
+
         .resume-container {
             width: 80%;
             max-width: 900px;
             margin-bottom: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0);
-            background-color: #2a2a2a;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: var(--bg-color);
             padding: 5px;
         }
+
         .download-btn {
             display: inline-block;
             padding: 10px 20px;
             font-size: 16px;
-            color: #000000;
-            background-color: #8e8e8e;
+            color: var(--btn-text);
+            background-color: var(--btn-bg);
             border: none;
             border-radius: 5px;
             text-decoration: none;
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
+
         .download-btn:hover {
-            background-color: #515151;
+            filter: brightness(90%);
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 60px;
+            z-index: 1000;
+            background-color: transparent;
+            color: var(--text-color);
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            font-size: 24px;
+        }
+
+        .tdnn {
+          margin: 0 auto;
+          /* Reduced font-size to make the toggle smaller */
+          font-size: 5%;
+          margin-top: 1em;
+          position: relative;
+          height: var(--toggleHeight);
+          width: var(--toggleWidth);
+          border-radius: var(--toggleHeight);
+          transition: all 500ms ease-in-out;
+          background: var(--bgColor--night);
+        }
+
+        .day {
+          background: #FFBF71;
+        }
+
+        .moon {
+          position: absolute;
+          display: block;
+          border-radius: 50%;
+          transition: all 400ms ease-in-out;
+          top: 3em;
+          left: 3em;
+          transform: rotate(-75deg);
+          width: var(--toggleBtnRadius);
+          height: var(--toggleBtnRadius);
+          background: var(--bgColor--night);
+          box-shadow: 
+            3em 2.5em 0 0em var(--mooncolor) inset,
+            rgba(255, 255, 255, 0.1) 0em -7em 0 -4.5em,
+            rgba(255, 255, 255, 0.1) 3em 7em 0 -4.5em,
+            rgba(255, 255, 255, 0.1) 2em 13em 0 -4em,
+            rgba(255, 255, 255, 0.1) 6em 2em 0 -4.1em,
+            rgba(255, 255, 255, 0.1) 8em 8em 0 -4.5em,
+            rgba(255, 255, 255, 0.1) 6em 13em 0 -4.5em,
+            rgba(255, 255, 255, 0.1) -4em 7em 0 -4.5em,
+            rgba(255, 255, 255, 0.1) -1em 10em 0 -4.5em;
+        }
+
+        .sun {
+          top: 4.5em;
+          left: 18em;
+          transform: rotate(0deg);
+          width: 7em;
+          height: 7em;
+          background: #fff;
+          box-shadow: 3em 3em 0 5em #fff inset,
+            0 -5em 0 -2.7em #fff,
+            3.5em -3.5em 0 -3em #fff,
+            5em 0 0 -2.7em #fff,
+            3.5em 3.5em 0 -3em #fff,
+            0 5em 0 -2.7em #fff,
+            -3.5em 3.5em 0 -3em #fff,
+            -5em 0 0 -2.7em #fff,
+            -3.5em -3.5em 0 -3em #fff;
         }
     </style>
 </head>
 <body>
+    <button class="theme-toggle" onclick="toggleTheme()">
+        <div class="tdnn">
+            <div class="moon"></div>
+        </div>
+    </button>
+
     <div class="resume-container">
         <iframe src="Resume - JAI SINGH RATHORE.pdf" width="100%" height="600px"></iframe>
     </div>
+
     <a href="Resume - JAI SINGH RATHORE.pdf" class="download-btn" download="Resume - JAI SINGH RATHORE.pdf">Download Resume</a>
+
+    <div class="menu-toggle" onclick="toggleMenu()">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+
+    <div class="sliding-menu" id="menu">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="portfolio.html">Projects</a></li>
+            <li><a href="coursework.html">Coursework</a></li>
+        </ul>
+    </div>
+
+    <script>
+        const toggleTheme = () => {
+            document.body.classList.toggle('light-theme');
+            document.querySelector('.tdnn').classList.toggle('day');
+            document.querySelector('.moon').classList.toggle('sun');
+        };
+
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            const toggle = document.querySelector('.menu-toggle');
+            menu.classList.toggle('open');
+            toggle.classList.toggle('open');
+        }
+    </script>
 </body>
-<body class="sub_page">
-    <div class="hero_area">
-      <!-- header section starts -->
-      <header class="header_section">
-        <div class="container-fluid">
-            <div class="menu-toggle" onclick="toggleMenu()">
-              <div class="bar"></div>
-              <div class="bar"></div>
-              <div class="bar"></div>
-          </div>
-          
-          <nav class="sliding-menu" onmouseleave="closeMenu()">
-              <ul>
-                  <li><a href="index.html#about">About Me</a></li>
-                  <li><a href="index.html#skills">Skills</a></li>
-                  <li><a href="portfolio.html">Projects</a></li>
-                  <li><a href="resume.html">Resumé</a></li>
-                  <li><a href="coursework.html">Coursework</a></li>
-              </ul>
-          </nav>
-      
-          <script>
-              function toggleMenu() {
-              const menu = document.querySelector('.sliding-menu');
-              const menuToggle = document.querySelector('.menu-toggle');
-              menu.classList.toggle('open');
-              menuToggle.classList.toggle('open');
-          }
-  
-          function closeMenu() {
-              const menu = document.querySelector('.sliding-menu');
-              const menuToggle = document.querySelector('.menu-toggle');
-              menu.classList.remove('open');
-              menuToggle.classList.remove('open');
-          }
-          </script>
-          </nav>
-        </div>
-      </header>
 </html>
