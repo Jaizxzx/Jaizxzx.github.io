@@ -223,6 +223,7 @@
             <ul>
                 <li><a href="#about">About Me</a></li>
                 <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="resume.html">Resumé</a></li>
                 <li><a href="coursework.html">Coursework</a></li>
@@ -286,14 +287,112 @@
 
   <script>
     function scrollToNextSection() {
-      const nextSection = document.querySelector('.do_section');
+      const nextSection = document.querySelector('.who_section');
       if (nextSection) {
         nextSection.scrollIntoView({ behavior: 'smooth' });
       }
     }
   </script>
     
-    <!DOCTYPE html>
+  <!-- who section -->
+<section class="who_section" id="about">
+  <style>
+    .who_section {
+      background-color: #000000; /* Adding a dark background for better contrast with white text */
+      padding: 60px 0;
+    }
+
+    .detail-box {
+      color: #b7b7b7; /* Changing the text color to white */
+    }
+
+    .detail-box a {
+      color: #fec016; /* Custom color for the 'Read More' link */
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .detail-box a:hover {
+      color: #ffcc33; /* Hover effect for the 'Read More' link */
+    }
+
+    .heading_container h2 {
+      font-size: 36px;
+      color: #ffffff; /* Making the heading white as well */
+      margin-bottom: 20px;
+    }
+
+    /* Styling for the image container */
+    .img-box img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Adding a shadow around the image */
+    }
+
+    .img-box {
+      text-align: center;
+    }
+
+    .resume-download-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 30px;
+      background: linear-gradient(135deg, #fec016, #ff8c00);
+      color: #000;
+      text-decoration: none;
+      border-radius: 25px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(254, 192, 22, 0.3);
+    }
+
+    .resume-download-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(254, 192, 22, 0.5);
+      color: #000;
+    }
+
+    .resume-download-btn i {
+      margin-right: 8px;
+    }
+  </style>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5">
+        <div class="img-box">
+          <img src="images/me.webp" alt="A picture of me">
+          <a href="https://drive.google.com/uc?export=download&id=1K2xsr_-G9jFv_YXd31cE4-oqTZKDk9yV" class="resume-download-btn" target="_blank">
+            <i class="fas fa-download"></i>Download Resume
+          </a>
+        </div>
+      </div>
+      <div class="col-md-7">
+        <div class="detail-box">
+          <div class="heading_container">
+            <h2>About Me</h2>
+          </div>
+          <p>
+            Back-End Engineer & AI/ML Enthusiast | BTech CSE (AI/ML) at Christ University
+            <br><br>
+            Currently working as a Back-End Engineer Intern at GoQuant, where I architect multi-service systems using FastAPI, REST APIs, and WebSocket integrations. I specialize in building high-performance systems with Python and C++, working extensively with PostgreSQL, Redis caching, and low-latency market data pipelines that achieve 99.9%+ accuracy.
+            <br><br>
+            Previously at XenReality Technologies, I enhanced OCR accuracy by 15-20%, trained object detection models with 85% precision, and achieved 85% accuracy in real-time pose estimation while reducing GPU memory consumption by 25% through optimization techniques.
+            <br><br>
+            With expertise spanning Computer Vision, Deep Learning, and systems programming, I'm passionate about building scalable, efficient solutions. I'm also a game developer with strong skills in Unreal Engine, C++, and GPU programming, constantly pushing the boundaries of what's possible in both backend systems and interactive experiences.
+          </p>
+          <div>
+            <!-- Read More button implement later if needed <a href="#">Read More</a> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- end who section -->
+
+  <!DOCTYPE html>
     <html lang="en">
     <head>
       <meta charset="UTF-8">
@@ -358,26 +457,27 @@
               <img src="https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white" alt="C++">
               <img src="https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54" alt="Python">
               <img src="https://img.shields.io/badge/c-%2300599C.svg?style=for-the-badge&logo=c&logoColor=white" alt="C">
-              <img src="https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=java&logoColor=white" alt="Java">
-              <img src="https://img.shields.io/badge/Unreal%20Engine-0E1128.svg?style=for-the-badge&logo=Unreal-Engine&logoColor=white" alt="Unreal Engine">
-              <img src="https://img.shields.io/badge/OpenGL-%23FFFFFF.svg?style=for-the-badge&logo=opengl" alt="OpenGL">
-              <img src="https://img.shields.io/badge/GLSL-5586A4.svg?style=for-the-badge&logo=OpenGL&logoColor=white" alt="GLSL">
-              <img src="https://img.shields.io/badge/Blender-%23F5792A.svg?style=for-the-badge&logo=blender&logoColor=white" alt="Blender">
-              <img src="https://img.shields.io/badge/Visual%20Studio-5C2D91.svg?style=for-the-badge&logo=visual-studio&logoColor=white" alt="Visual Studio">
-              <img src="https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white" alt="Visual Studio Code">
-              <img src="https://img.shields.io/badge/CLion-black?style=for-the-badge&logo=clion&logoColor=white" alt="CLion">
-              <img src="https://img.shields.io/badge/Rider-000000.svg?style=for-the-badge&logo=Rider&logoColor=white" alt="JetBrains Rider">
-              <img src="https://img.shields.io/badge/numpy-%23013243.svg?style=for-the-badge&logo=numpy&logoColor=white" alt="NumPy">
-              <img src="https://img.shields.io/badge/pandas-%23150458.svg?style=for-the-badge&logo=pandas&logoColor=white" alt="Pandas">
-              <img src="https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white" alt="SciKit Learn">
-              <img src="https://img.shields.io/badge/Matplotlib-%23ffffff.svg?style=for-the-badge&logo=Matplotlib&logoColor=black" alt="Matplotlib">
-              <img src="https://img.shields.io/badge/TensorFlow-%23FF6F00.svg?style=for-the-badge&logo=TensorFlow&logoColor=white" alt="TensorFlow">
-              <img src="https://img.shields.io/badge/Keras-%23D00000.svg?style=for-the-badge&logo=Keras&logoColor=white" alt="Keras">
+              <img src="https://img.shields.io/badge/Redis-%23DC382D.svg?style=for-the-badge&logo=redis&logoColor=white" alt="Redis">
+              <img src="https://img.shields.io/badge/CUDA-76B900?style=for-the-badge&logo=nvidia&logoColor=white" alt="CUDA">
+              <img src="https://img.shields.io/badge/Bash-4EAA25?style=for-the-badge&logo=gnu-bash&logoColor=white" alt="Bash">
+              <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL">
+              <img src="https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white" alt="FastAPI">
+              <img src="https://img.shields.io/badge/WebSockets-010101?style=for-the-badge&logo=socket.io&logoColor=white" alt="WebSockets">
+              <img src="https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=postman&logoColor=white" alt="Postman">
+              <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker">
+              <img src="https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black" alt="Linux">
+              <img src="https://img.shields.io/badge/WSL-0078D4?style=for-the-badge&logo=windows&logoColor=white" alt="WSL">
+              <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white" alt="Git">
+              <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub">
               <img src="https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?style=for-the-badge&logo=PyTorch&logoColor=white" alt="PyTorch">
-              <img src="https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white" alt="Git">
-              <img src="https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white" alt="GitHub">
-              <img src="https://img.shields.io/badge/gitlab-%23181717.svg?style=for-the-badge&logo=gitlab&logoColor=white" alt="GitLab">
-              <img src="https://img.shields.io/badge/-PERFORCE%20HELIX-404040?style=for-the-badge&logo=Perforce&logoColor=white" alt="Perforce">
+              <img src="https://img.shields.io/badge/TensorFlow-%23FF6F00.svg?style=for-the-badge&logo=TensorFlow&logoColor=white" alt="TensorFlow">
+              <img src="https://img.shields.io/badge/Transformers-FF6F00?style=for-the-badge&logo=huggingface&logoColor=white" alt="Transformers">
+              <img src="https://img.shields.io/badge/Hugging%20Face-FFD21E?style=for-the-badge&logo=huggingface&logoColor=black" alt="Hugging Face">
+              <img src="https://img.shields.io/badge/ONNX-005CED?style=for-the-badge&logo=onnx&logoColor=white" alt="ONNX">
+              <img src="https://img.shields.io/badge/Numba-00A3E0?style=for-the-badge&logo=numba&logoColor=white" alt="Numba">
+              <img src="https://img.shields.io/badge/Amazon%20S3-569A31?style=for-the-badge&logo=amazon-s3&logoColor=white" alt="Amazon S3">
+              <img src="https://img.shields.io/badge/VS%20Code-007ACC?style=for-the-badge&logo=visual-studio-code&logoColor=white" alt="VS Code">
+              <img src="https://img.shields.io/badge/GDB-CC0000?style=for-the-badge&logo=gnu&logoColor=white" alt="GDB">
             </div>
           </div>
         </div>
@@ -420,74 +520,162 @@
   
   <!-- end do section -->
 
-  <!-- who section -->
-<section class="who_section" id="about">
-  <style>
-    .who_section {
-      background-color: #000000; /* Adding a dark background for better contrast with white text */
-      padding: 60px 0;
-    }
+  <!-- work experience section -->
+  <section class="experience_section layout_padding" id="experience">
+    <style>
+      .experience_section {
+        background-color: #0a0a0a;
+        padding: 60px 0;
+      }
 
-    .detail-box {
-      color: #b7b7b7; /* Changing the text color to white */
-    }
+      .experience_section .heading_container h2 {
+        font-size: 36px;
+        background: linear-gradient(to right, orange, #fec016);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 40px;
+        text-align: center;
+      }
 
-    .detail-box a {
-      color: #fec016; /* Custom color for the 'Read More' link */
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
+      .experience-container {
+        max-width: 1000px;
+        margin: 0 auto;
+      }
 
-    .detail-box a:hover {
-      color: #ffcc33; /* Hover effect for the 'Read More' link */
-    }
+      .experience-card {
+        background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+        border-left: 4px solid #fec016;
+        border-radius: 10px;
+        padding: 30px;
+        margin-bottom: 30px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
 
-    .heading_container h2 {
-      font-size: 36px;
-      color: #ffffff; /* Making the heading white as well */
-      margin-bottom: 20px;
-    }
+      .experience-card:hover {
+        transform: translateX(10px);
+        box-shadow: 0 12px 24px rgba(254, 192, 22, 0.2);
+      }
 
-    /* Styling for the image container */
-    .img-box img {
-      width: 100%;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Adding a shadow around the image */
-    }
-  </style>
+      .experience-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 15px;
+        flex-wrap: wrap;
+      }
 
-  <div class="container">
-    <div class="row">
-      <div class="col-md-5">
-        <div class="img-box">
-          <img src="images/me.webp" alt="A picture of me">
-        </div>
+      .experience-title {
+        color: #fec016;
+        font-size: 22px;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+
+      .experience-company {
+        color: #ffffff;
+        font-size: 18px;
+        margin-bottom: 5px;
+      }
+
+      .experience-location {
+        color: #b7b7b7;
+        font-size: 14px;
+      }
+
+      .experience-date {
+        color: #b7b7b7;
+        font-size: 14px;
+        font-style: italic;
+      }
+
+      .experience-description {
+        color: #d0d0d0;
+        line-height: 1.8;
+        margin-top: 15px;
+      }
+
+      .experience-description ul {
+        list-style: none;
+        padding-left: 0;
+      }
+
+      .experience-description li {
+        position: relative;
+        padding-left: 25px;
+        margin-bottom: 12px;
+      }
+
+      .experience-description li:before {
+        content: "▸";
+        position: absolute;
+        left: 0;
+        color: #fec016;
+        font-weight: bold;
+      }
+
+      @media (max-width: 768px) {
+        .experience-header {
+          flex-direction: column;
+        }
+        
+        .experience-date {
+          margin-top: 10px;
+        }
+      }
+    </style>
+
+    <div class="container">
+      <div class="heading_container">
+        <h2>Work Experience</h2>
       </div>
-      <div class="col-md-7">
-        <div class="detail-box">
-          <div class="heading_container">
-            <h2>About Me</h2>
+      
+      <div class="experience-container">
+        <!-- GoQuant Experience -->
+        <div class="experience-card">
+          <div class="experience-header">
+            <div>
+              <div class="experience-title">Back-End Engineer Intern</div>
+              <div class="experience-company">GoQuant</div>
+              <div class="experience-location">Remote</div>
+            </div>
+            <div class="experience-date">June 2025 - Present</div>
           </div>
-          <p>
-            A Game Developer with a Passion for Unreal Engine, C++, AI, and GPU Technology.
-            <br><br>
-            As a game developer, I thrive on creating immersive and engaging experiences using Unreal Engine. With a strong foundation in C++ and Blueprints, I have developed several projects that showcase my expertise in game design, programming, and asset creation.
-            <br><br>
-            Driven by a curiosity for emerging technologies, I have cultivated a strong passion for Artificial Intelligence (AI) and Machine Learning (ML). I have a solid understanding of Python and have applied ML techniques to various projects, demonstrating my ability to integrate intelligent systems into game development.
-            <br><br>
-            With a keen interest in GPU technology and 3D graphics, including knowledge of OpenGL, I am driven to push the boundaries of visual fidelity and performance in the domain of 3D programming.
-          </p>
-          <div>
-            <!-- Read More button implement later if needed <a href="#">Read More</a> -->
+          <div class="experience-description">
+            <ul>
+              <li>Architected multi-service support using FastAPI, REST API, and WebSocket integrations, establishing seamless communication between diverse system architectures.</li>
+              <li>Developed and maintained management systems in both Python and C++, ensuring robust cross-platform compatibility and efficient system integration.</li>
+              <li>Integrated multiple components and services into an existing middleware communication system that connects frontend applications with backend management systems, working extensively with PostgreSQL database operations and Redis caching in a Python environment.</li>
+              <li>Enhanced development efficiency with C++, GDB, and Linux, while leveraging Git and GitHub Actions to optimize workflows and boost productivity.</li>
+              <li>Engineered a low-latency market data pipeline processing high-volume message streams with exceptional accuracy above 99.9%, using modern C++ and concurrent multithreading to minimize data loss and maximize throughput.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- XenReality Experience -->
+        <div class="experience-card">
+          <div class="experience-header">
+            <div>
+              <div class="experience-title">AI & ML Software Engineering Intern</div>
+              <div class="experience-company">XenReality Technologies</div>
+              <div class="experience-location">Hybrid</div>
+            </div>
+            <div class="experience-date">August 2024 - May 2025</div>
+          </div>
+          <div class="experience-description">
+            <ul>
+              <li>Improved OCR text recognition accuracy by 15-20% through advanced pre-processing techniques and algorithms, enhancing document processing capabilities and data extraction efficiency.</li>
+              <li>Trained object detection models achieving 85% precision and 80% recall rates for object classification and detection, enabling robust computer vision applications.</li>
+              <li>Enhanced data quality and model performance by 20% through implementation of anomaly detection algorithms and outlier detection techniques for improved reliability.</li>
+              <li>Achieved real-time pose estimation performance with 85% accuracy in tracking body movements and coordinates, enabling advanced motion analysis applications.</li>
+              <li>Reduced GPU memory consumption by 25% through model quantization and optimization techniques, improving cost-efficiency and scalability.</li>
+            </ul>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-  <!-- end who section -->
-
+  </section>
+  <!-- end work experience section -->
 
   <!-- work section -->
   <style>
@@ -614,11 +802,18 @@
         </p>
       </div>
       <div class="work_container layout_padding2" >
+        <a href="https://github.com/Jaizxzx/PaDiM-Anomaly-Detection-Localization-master" class="project-card">
+          <img src="images/padim.webp" alt="PaDiM Anomaly Detection">
+          <div class="project-info">
+            <h3>PaDiM Anomaly Detection Framework</h3>
+            <p>PyTorch implementation achieving 95.5% image-level and 97.3% pixel-level anomaly detection accuracy using multivariate Gaussian distribution modeling.</p>
+          </div>
+        </a>
         <a href="https://github.com/Jaizxzx/Discord_Plugin_for_Unreal_Engine" class="project-card">
           <img src="images/discord.png" alt="Discord Plugin for Unreal">
           <div class="project-info">
-            <h3>Discord Unreal Engine Plugin</h3>
-            <p>A Discord Rich Presence integration plugin for Unreal Engine projects written in C++.</p>
+            <h3>Discord Rich Presence Plugin for UE</h3>
+            <p>Comprehensive Unreal Engine plugin using C++ and Discord GameSDK v3.2.1 with custom subsystem architecture and automated setup scripts.</p>
           </div>
         </a>
         <a href="https://github.com/Jaizxzx/Neural-Network_and_Deep-Learning/blob/main/MIT_Deep_Learning/lab1/Part2_Music_Generation.ipynb" class="project-card">
@@ -645,8 +840,8 @@
         <a href="https://github.com/Jaizxzx/Trading.git" class="project-card">
           <img src="images/algo_trading.jpeg" alt="Crypto Trading Algo">
           <div class="project-info">
-            <h3>Crypto Trading Algo Implementaion</h3>
-            <p>A cypto trading algorithm which runs 24/7 on the cloud made for the Binance Platform in Python.</p>
+            <h3>Crypto Trading Algo Implementation</h3>
+            <p>A crypto trading algorithm which runs 24/7 on the cloud made for the Binance Platform in Python.</p>
           </div>
         </a>
       </div>
@@ -798,14 +993,11 @@
             <a href="https://github.com/Jaizxzx" aria-label="GitHub">
               <img src="https://img.icons8.com/ios-filled/50/000000/github.png" alt="GitHub">
             </a>
-            <a href="https://www.linkedin.com/in/jai-singh-rathore-350993280/" aria-label="LinkedIn">
-              <img src="https://img.icons8.com/ios-filled/50/000000/linkedin.png" alt="LinkedIn">
+                <a href="https://www.linkedin.com/in/jai-singh-rathore-350993280/" aria-label="LinkedIn">
+                  <img src="https://img.icons8.com/ios-filled/50/000000/linkedin.png" alt="LinkedIn">
             </a>
-            <a href="https://www.youtube.com/@jaizxzx" aria-label="YouTube">
-              <img src="https://img.icons8.com/ios-filled/50/000000/youtube.png" alt="YouTube">
-            </a>
-            <a href="https://www.artstation.com/jaizxzx" aria-label="ArtStation">
-              <img src="https://img.icons8.com/ios-filled/50/000000/artstation.png" alt="ArtStation">
+            <a href="https://www.codechef.com/users/jaizxzx" aria-label="CodeChef">
+              <img src="https://img.icons8.com/ios-filled/50/000000/code.png" alt="CodeChef">
             </a>
             <a href="https://leetcode.com/u/Jaizxzx/" aria-label="LeetCode">
               <img src="images/leet code.png" alt="LeetCode">
